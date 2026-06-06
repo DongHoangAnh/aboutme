@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đồng Hoàng Anh — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f5f7;
+    --bg2: #fff;
+    --bg3: #e8e8ed;
+    --ink: #1d1d1f;
+    --ink2: #424245;
+    --ink3: #6e6e73;
+    --ink4: #86868b;
+    --blue: #0071e3;
+    --blue-h: #0077ed;
+    --border: rgba(0,0,0,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* NAV */
+  nav {
+    background: rgba(245,245,247,0.82);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem; height: 52px;
+    position: sticky; top: 0; z-index: 50;
+  }
+  .nav-brand { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+  .nav-links { display: flex; gap: 1.8rem; }
+  .nav-links a { font-size: 0.78rem; color: var(--ink3); font-weight: 400; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-size: 0.78rem; color: var(--blue); font-weight: 500;
+    border: 0.5px solid rgba(0,113,227,0.3);
+    padding: 5px 14px; border-radius: 100px;
+    transition: background 0.15s;
+  }
+  .nav-cta:hover { background: rgba(0,113,227,0.06); }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 8rem 2rem 6rem;
+    max-width: 860px; margin: 0 auto;
+  }
+  .hero-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--blue); background: rgba(0,113,227,0.08);
+    padding: 5px 16px; border-radius: 100px; margin-bottom: 1.8rem;
+  }
+  .hero-chip::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--blue);
+  }
+  .hero-name {
+    font-size: clamp(3rem, 6vw, 4.8rem);
+    font-weight: 600; letter-spacing: -0.04em; line-height: 1.04;
+    color: var(--ink); margin-bottom: 1.2rem;
+  }
+  .hero-name .sub {
+    display: block; font-weight: 300; color: var(--ink3);
+    font-size: clamp(1.4rem, 2.5vw, 2rem); margin-top: 0.2rem;
+  }
+  .hero-desc {
+    font-size: 1.1rem; color: var(--ink3); font-weight: 300;
+    max-width: 540px; margin: 0 auto 2.5rem; line-height: 1.7;
+    letter-spacing: -0.005em;
+  }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-blue {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--blue); color: #fff;
+    padding: 0.7rem 1.6rem; border-radius: 100px;
+    font-size: 0.88rem; font-weight: 500; letter-spacing: -0.01em;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .btn-blue:hover { background: var(--blue-h); transform: scale(1.01); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: var(--blue); padding: 0.7rem 1.6rem; border-radius: 100px;
+    font-size: 0.88rem; font-weight: 500;
+    border: 0.5px solid rgba(0,113,227,0.35);
+    transition: background 0.15s;
+  }
+  .btn-ghost:hover { background: rgba(0,113,227,0.06); }
+
+  /* SECTION */
+  .section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+  .sec-label {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 0.5rem;
+  }
+  .sec-title {
+    font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 600;
+    letter-spacing: -0.03em; line-height: 1.1;
+    color: var(--ink); margin-bottom: 0.75rem;
+  }
+  .sec-sub { font-size: 0.95rem; color: var(--ink3); font-weight: 300; max-width: 480px; }
+
+  /* SKILLS GRID */
+  .cards-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px; background: var(--border); border-radius: 18px; overflow: hidden;
+    margin-top: 3rem; border: 0.5px solid var(--border);
+  }
+  .skill-card { background: var(--bg2); padding: 1.75rem 1.5rem; transition: background 0.15s; }
+  .skill-card:hover { background: #fafafa; }
+  .skill-ico { font-size: 1.4rem; margin-bottom: 0.75rem; }
+  .skill-title { font-size: 0.92rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
+  .skill-list { font-size: 0.78rem; color: var(--ink4); line-height: 1.7; }
+
+  /* TAGS */
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2.5rem; }
+  .tag {
+    font-size: 0.75rem; color: var(--ink3); background: var(--bg2);
+    padding: 5px 14px; border-radius: 100px;
+    border: 0.5px solid var(--border); font-weight: 400;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .tag:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* EXPERIENCE */
+  .exp-wrap { margin-top: 3rem; }
+  .exp-row {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 0 2rem; padding: 2.5rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .exp-row:first-child { border-top: 0.5px solid var(--border); }
+  .exp-yr { font-size: 0.78rem; color: var(--ink4); padding-top: 3px; font-weight: 400; letter-spacing: 0.01em; }
+  .exp-co { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; letter-spacing: -0.02em; }
+  .exp-role { font-size: 0.82rem; color: var(--blue); margin-bottom: 0.6rem; font-weight: 500; }
+  .exp-desc { font-size: 0.83rem; color: var(--ink3); line-height: 1.7; font-weight: 300; }
+
+  /* CONTACT */
+  .contact-wrap {
+    background: var(--ink); color: #fff; border-radius: 22px;
+    text-align: center; padding: 5rem 2rem; margin: 0 2rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .contact-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 80% 10%, rgba(0,113,227,0.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .contact-chip {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); margin-bottom: 1rem; display: block;
+  }
+  .contact-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 600;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.8rem;
+  }
+  .contact-sub { font-size: 0.95rem; color: rgba(255,255,255,0.5); font-weight: 300; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+  .link-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 0.5px solid rgba(255,255,255,0.14);
+    color: rgba(255,255,255,0.85);
+    padding: 8px 18px; border-radius: 100px; font-size: 0.82rem; font-weight: 400;
+    transition: background 0.15s;
+  }
+  .link-pill:hover { background: rgba(255,255,255,0.14); }
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #fff; color: var(--ink);
+    padding: 0.75rem 1.75rem; border-radius: 100px;
+    font-size: 0.88rem; font-weight: 500;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .btn-white:hover { opacity: 0.88; transform: scale(1.01); }
+
+  footer {
+    text-align: center; padding: 2rem;
+    font-size: 0.75rem; color: var(--ink4);
+    border-top: 0.5px solid var(--border);
+  }
+
+  /* FADE-IN */
+  .fade { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade.on { opacity: 1; transform: none; }
+
+  /* MOBILE */
+  @media (max-width: 640px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 5rem 1.5rem 4rem; }
+    .section { padding: 3.5rem 1.5rem; }
+    .contact-wrap { margin: 0 1rem 4rem; padding: 3rem 1.5rem; border-radius: 16px; }
+    .exp-row { grid-template-columns: 1fr; gap: 4px; }
+    .exp-yr { margin-bottom: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Đồng Hoàng Anh</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="mailto:donghoanganh2004@gmail.com" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section id="about">
+  <div class="hero fade">
+    <div class="hero-chip">Software Engineer Intern</div>
+    <h1 class="hero-name">
+      Đồng Hoàng Anh
+      <span class="sub">Building things that matter.</span>
+    </h1>
+    <p class="hero-desc">
+      Sinh viên kỹ thuật phần mềm đam mê xây dựng sản phẩm full-stack — từ backend vững chắc đến giao diện người dùng tinh tế. Đang thực tập tại Viettel Solutions.
+    </p>
+    <div class="hero-btns">
+      <a href="mailto:donghoanganh2004@gmail.com" class="btn-blue">
+        ✉ Email me
+      </a>
+      <a href="https://github.com/DongHoangAnh" target="_blank" rel="noopener" class="btn-ghost">
+        ⌥ GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/kavin-chistin-4899b6370" target="_blank" rel="noopener" class="btn-ghost">
+        ↗ LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section fade">
+  <div class="sec-label">Năng lực</div>
+  <h2 class="sec-title">Skills & Technologies</h2>
+  <p class="sec-sub">Full-stack development từ hệ thống backend đến giao diện người dùng hiện đại.</p>
+  <div class="cards-grid">
+    <div class="skill-card">
+      <div class="skill-ico">⚙️</div>
+      <div class="skill-title">Backend</div>
+      <div class="skill-list">Java · Spring Boot<br>Microservices · REST API<br>Kafka · Redis</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-ico">🖥️</div>
+      <div class="skill-title">Frontend</div>
+      <div class="skill-list">React · JavaScript<br>HTML / CSS<br>Responsive Design</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-ico">🗄️</div>
+      <div class="skill-title">Database</div>
+      <div class="skill-list">MySQL · PostgreSQL<br>MongoDB · Redis<br>JPA / Hibernate</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-ico">🛠️</div>
+      <div class="skill-title">DevOps</div>
+      <div class="skill-list">Docker · Kubernetes<br>CI/CD · Linux<br>Git · GitHub</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-ico">✨</div>
+      <div class="skill-title">Vibe Coding</div>
+      <div class="skill-list">AI-assisted dev<br>Prompt engineering<br>Rapid prototyping</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-ico">📐</div>
+      <div class="skill-title">Architecture</div>
+      <div class="skill-list">System design<br>Agile / Scrum<br>Code review</div>
+    </div>
+  </div>
+  <div class="tag-cloud">
+    <span class="tag">Spring Security</span>
+    <span class="tag">OpenAPI / Swagger</span>
+    <span class="tag">Maven</span>
+    <span class="tag">Unit Testing</span>
+    <span class="tag">Message Queue</span>
+    <span class="tag">Gradle</span>
+    <span class="tag">WebSocket</span>
+    <span class="tag">TypeScript</span>
+    <span class="tag">Next.js</span>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section fade" style="padding-top: 2rem;">
+  <div class="sec-label">Kinh nghiệm</div>
+  <h2 class="sec-title">Work Experience</h2>
+  <div class="exp-wrap">
+    <div class="exp-row">
+      <div class="exp-yr">2025 — Nay</div>
+      <div>
+        <div class="exp-co">Viettel Solutions</div>
+        <div class="exp-role">Software Engineer Intern</div>
+        <div class="exp-desc">
+          Thực tập phát triển phần mềm tại một trong những công ty công nghệ lớn nhất Việt Nam. Tham gia xây dựng và bảo trì các hệ thống quy mô lớn, học hỏi quy trình Agile chuyên nghiệp, làm việc với kiến trúc microservices và tích lũy kinh nghiệm thực chiến từ các kỹ sư senior.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="contact-wrap fade">
+    <span class="contact-chip">— Let's connect —</span>
+    <h2 class="contact-title">Ready to build<br>something great?</h2>
+    <p class="contact-sub">Luôn sẵn sàng cho những cơ hội thú vị và thách thức mới.</p>
+    <div class="contact-links">
+      <a href="mailto:donghoanganh2004@gmail.com" class="link-pill">
+        ✉ donghoanganh2004@gmail.com
+      </a>
+      <a href="https://github.com/DongHoangAnh" target="_blank" rel="noopener" class="link-pill">
+        ⌥ DongHoangAnh
+      </a>
+      <a href="https://www.linkedin.com/in/kavin-chistin-4899b6370" target="_blank" rel="noopener" class="link-pill">
+        ↗ LinkedIn
+      </a>
+    </div>
+    <a href="mailto:donghoanganh2004@gmail.com" class="btn-white">
+      Say hello →
+    </a>
+  </div>
+</div>
+
+<footer>
+  © 2026 Đồng Hoàng Anh · Software Engineer Intern · Ho Chi Minh City, Vietnam
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.fade');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('on'), i * 60);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  els.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
